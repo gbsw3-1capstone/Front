@@ -1,0 +1,165 @@
+.no-toggle {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background-color: #1e1e2f;
+  /* background-color: rgb(121, 126, 188); */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.sidebar.closed {
+  width: 60px;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.toggle-btn {
+  background: none;
+  color: white;
+  font-size: 22px;
+  border: none;
+  cursor: pointer;
+}
+
+.search-box {
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  /* background-color: rgb(121, 126, 188); */
+  background-color: #1e1e2f;
+  color: white;
+  /* border-bottom: 1px solid white; */
+}
+
+.sidebar.closed .search-box {
+  font-size: 20px;
+  padding: 10px 0;
+}
+
+.menu-group {
+  margin-bottom: 4px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.nav-item:hover {
+  background-color: #2d2d42;
+}
+
+.icon {
+  font-size: 18px;
+  margin-right: 12px;
+}
+
+.sidebar.closed .icon {
+  margin-right: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.label {
+  flex-grow: 1;
+}
+
+.arrow {
+  margin-left: auto;
+  transition: transform 0.3s;
+}
+
+.arrow.open {
+  transform: rotate(90deg);
+}
+
+.sub-menu {
+  margin-left: 20px;
+}
+
+.sub-item {
+  padding: 8px 20px;
+  font-size: 14px;
+  color: #cccccc;
+  text-decoration: none;
+}
+
+.sub-item:hover,
+.sub-item.active {
+  color: #ffffff;
+  background-color: #44445a;
+  border-radius: 6px;
+}
+
+.navbar-footer {
+  margin-top: auto;
+  padding: 20px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  color: #aaa;
+}
+
+.navbar-footer a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.navbar-footer a:hover {
+  color: #fff;
+}
+
+.divider {
+  color: #555;
+}
+
+.top-bar.left-fixed {
+  justify-content: flex-start;
+  padding-left: 16px;
+}
+
+.footer-icon {
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+}
+
+.sidebar.closed .navbar-footer {
+  padding: 10px 0;
+}

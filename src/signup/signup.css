@@ -1,0 +1,68 @@
+.register-background {
+    /* background-color: rgb(226, 226, 226);  */
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.register-background form {
+    width: 700px;
+    height: 700px;
+    background-color: white;
+    margin-top: 30px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    padding: 10px 10px;
+    gap: 20px; 
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 90px;
+}
+
+.register-con {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 80%;
+}
+
+.register-text2 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.register-text,
+.register-password,
+.register-password2,
+.register-name{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 20px;
+    text-align: left;
+
+}
+
+.register-button{
+    width: 257px;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #1e1e2f;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register-button:hover {
+    background-color: #2e2e3d;
+}
