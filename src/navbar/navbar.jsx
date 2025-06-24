@@ -42,18 +42,18 @@ function Navbar({ isSidebarOpen, setIsSidebarOpen }) {
 
   const onSearchSubmit = (e) => {
     e.preventDefault();
-    if(searchText.trim()) {
-        navigate(`/search?q=${encodeURIComponent(searchText.trim())}`);
-        setSearchText("");
-        if(isSidebarOpen){
-            setIsSidebarOpen(false);
-        }
+    if (searchText.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchText.trim())}`);
+      setSearchText("");
+      if (isSidebarOpen) {
+        setIsSidebarOpen(false);
+      }
     }
   };
 
   useEffect(() => {
-    if (!isSidebarOpen){
-        setSearchText("");
+    if (!isSidebarOpen) {
+      setSearchText("");
     }
   }, [isSidebarOpen]);
 
@@ -70,152 +70,152 @@ function Navbar({ isSidebarOpen, setIsSidebarOpen }) {
 
   const handleHomeClick = () => {
     navigate("/");
-    if(isSidebarOpen){
-        setIsSidebarOpen(false);
+    if (isSidebarOpen) {
+      setIsSidebarOpen(false);
     }
   };
-  
-//   const handleMenuClick = (label) => {
-//     toggleMenu(label);
-//     if(isSidebarOpen){
-//         setIsSidebarOpen(false);
-//     }
-//   };
-  
-//   const handleSubMenuClick = (subTo) => {
-//   navigate(subTo);
-//   if (isSidebarOpen) {
-//     setIsSidebarOpen(false);
-//   }
-// };
-return (
-  <div className="no-toggle">
-    <aside className={`sidebar ${isSidebarOpen ? "open" : "closed"}`}>
-      <div className="top-bar left-fixed">
-        <button
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="toggle-btn"
-        >
-          ☰
-        </button>
-      </div>
 
-      <div className="search-box">
-        {isSidebarOpen ? (
-            <form onSubmit={onSearchSubmit}>
-                <input
-                    type="text"
-                    placeholder="검색어를 입력하세요..."
-                    className="search-input"
-                    value={searchText}
-                    onChange={(e) => {
-                        const value = e.target.value;
-                        setSearchText(value);
-                        navigate(`/search?q=${encodeURIComponent(value)}`);
-                    }}
-                    autoComplete="off"
-                />
-          </form>
-        ) : (
-          <span
-            title="검색"
-            onClick={() => setIsSidebarOpen(true)}
-            style={{ cursor: "pointer" }}
-          >
-            🔍
-          </span>
-        )}
-      </div>
+  //   const handleMenuClick = (label) => {
+  //     toggleMenu(label);
+  //     if(isSidebarOpen){
+  //         setIsSidebarOpen(false);
+  //     }
+  //   };
 
-      <nav className="sidebar-nav">
-        <div className="menu-group">
-          <div
-            className="nav-item parent"
-            onClick={() => {
-              handleHomeClick();
-              if (isSidebarOpen) setIsSidebarOpen(false);
-            }}
-            title={!isSidebarOpen ? "홈" : ""}
+  //   const handleSubMenuClick = (subTo) => {
+  //   navigate(subTo);
+  //   if (isSidebarOpen) {
+  //     setIsSidebarOpen(false);
+  //   }
+  // };
+  return (
+    <div className="no-toggle">
+      <aside className={`sidebar ${isSidebarOpen ? "open" : "closed"}`}>
+        <div className="top-bar left-fixed">
+          <button
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            className="toggle-btn"
           >
-            <span className="icon">🏠</span>
-            {isSidebarOpen && <span className="label">홈</span>}
-          </div>
+            ☰
+          </button>
         </div>
-        {menuItems.map(({ label, icon, subMenu }) => (
-          <div key={label} className="menu-group">
+
+        <div className="search-box">
+          {isSidebarOpen ? (
+            <form onSubmit={onSearchSubmit}>
+              <input
+                type="text"
+                placeholder="검색어를 입력하세요..."
+                className="search-input"
+                value={searchText}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setSearchText(value);
+                  navigate(`/search?q=${encodeURIComponent(value)}`);
+                }}
+                autoComplete="off"
+              />
+            </form>
+          ) : (
+            <span
+              title="검색"
+              onClick={() => setIsSidebarOpen(true)}
+              style={{ cursor: "pointer" }}
+            >
+              🔍
+            </span>
+          )}
+        </div>
+
+        <nav className="sidebar-nav">
+          <div className="menu-group">
             <div
               className="nav-item parent"
-              onClick={() => toggleMenu(label)}
-              title={!isSidebarOpen ? label : ""}
+              onClick={() => {
+                handleHomeClick();
+                if (isSidebarOpen) setIsSidebarOpen(false);
+              }}
+              title={!isSidebarOpen ? "홈" : ""}
             >
-              <span className="icon">{icon}</span>
-              {isSidebarOpen && <span className="label">{label}</span>}
-              {isSidebarOpen && (
-                <span className={`arrow ${openMenus[label] ? "open" : ""}`}>
-                  ▸
-                </span>
+              <span className="icon">🏠</span>
+              {isSidebarOpen && <span className="label">홈</span>}
+            </div>
+          </div>
+          {menuItems.map(({ label, icon, subMenu }) => (
+            <div key={label} className="menu-group">
+              <div
+                className="nav-item parent"
+                onClick={() => toggleMenu(label)}
+                title={!isSidebarOpen ? label : ""}
+              >
+                <span className="icon">{icon}</span>
+                {isSidebarOpen && <span className="label">{label}</span>}
+                {isSidebarOpen && (
+                  <span className={`arrow ${openMenus[label] ? "open" : ""}`}>
+                    ▸
+                  </span>
+                )}
+              </div>
+              {openMenus[label] && isSidebarOpen && (
+                <div className="sub-menu">
+                  {subMenu.map(({ label: subLabel, to: subTo }) => (
+                    <Link
+                      key={subLabel}
+                      to={subTo}
+                      className={`nav-item sub-item ${
+                        location.pathname === subTo ? "active" : ""
+                      }`}
+                      onClick={() => {
+                        if (isSidebarOpen) setIsSidebarOpen(false);
+                      }}
+                    >
+                      {subLabel}
+                    </Link>
+                  ))}
+                </div>
               )}
             </div>
-            {openMenus[label] && isSidebarOpen && (
-              <div className="sub-menu">
-                {subMenu.map(({ label: subLabel, to: subTo }) => (
-                  <Link
-                    key={subLabel}
-                    to={subTo}
-                    className={`nav-item sub-item ${
-                      location.pathname === subTo ? "active" : ""
-                    }`}
-                    onClick={() => {
-                      if (isSidebarOpen) setIsSidebarOpen(false);
-                    }}
-                  >
-                    {subLabel}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-        ))}
-      </nav>
+          ))}
+        </nav>
 
-      <div className="navbar-footer">
-        {isSidebarOpen ? (
-          <>
-            <Link
-              to="/login"
-              onClick={() => setIsSidebarOpen(false)}
+        <div className="navbar-footer">
+          {isSidebarOpen ? (
+            localStorage.getItem("nickname") ? (
+              <Link to="/mainpage">
+                <div style={{ padding: "10px", fontWeight: "bold" }}>
+                  {localStorage.getItem("nickname")}님
+                </div>
+              </Link>
+            ) : (
+              <>
+                <Link to="/login" onClick={() => setIsSidebarOpen(false)}>
+                  로그인
+                </Link>
+                <span className="divider">|</span>
+                <Link to="/signup" onClick={() => setIsSidebarOpen(false)}>
+                  회원가입
+                </Link>
+              </>
+            )
+          ) : (
+            <span
+              role="button"
+              tabIndex={0}
+              title="로그인/회원가입"
+              className="footer-icon"
+              onClick={() => setIsSidebarOpen(true)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") setIsSidebarOpen(true);
+              }}
+              style={{ cursor: "pointer" }}
             >
-              로그인
-            </Link>
-            <span className="divider">|</span>
-            <Link
-              to="/signup"
-              onClick={() => setIsSidebarOpen(false)}
-            >
-              회원가입
-            </Link>
-          </>
-        ) : (
-          <span
-            role="button"
-            tabIndex={0}
-            title="로그인/회원가입"
-            className="footer-icon"
-            onClick={() => setIsSidebarOpen(true)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") setIsSidebarOpen(true);
-            }}
-            style={{ cursor: "pointer" }}
-          >
-            👤
-          </span>
-        )}
-      </div>
-    </aside>
-  </div>
-);
-
-
+              👤
+            </span>
+          )}
+        </div>
+      </aside>
+    </div>
+  );
 }
 
 export default Navbar;
