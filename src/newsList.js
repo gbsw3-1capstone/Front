@@ -129,6 +129,7 @@ export const newsList = [
     image:
       "https://imgnews.pstatic.net/image/144/2025/06/07/0001044728_001_20250607223913811.jpg?type=w647",
     news_source: "naver 스포츠",
+    news_link: "원본 링크",
   },
   {
     id: 14,

@@ -74,20 +74,6 @@ function Navbar({ isSidebarOpen, setIsSidebarOpen }) {
       setIsSidebarOpen(false);
     }
   };
-
-  //   const handleMenuClick = (label) => {
-  //     toggleMenu(label);
-  //     if(isSidebarOpen){
-  //         setIsSidebarOpen(false);
-  //     }
-  //   };
-
-  //   const handleSubMenuClick = (subTo) => {
-  //   navigate(subTo);
-  //   if (isSidebarOpen) {
-  //     setIsSidebarOpen(false);
-  //   }
-  // };
   return (
     <div className="no-toggle">
       <aside className={`sidebar ${isSidebarOpen ? "open" : "closed"}`}>
@@ -181,7 +167,7 @@ function Navbar({ isSidebarOpen, setIsSidebarOpen }) {
         <div className="navbar-footer">
           {isSidebarOpen ? (
             localStorage.getItem("nickname") ? (
-              <Link to="/mainpage">
+              <Link to="/mypage">
                 <div style={{ padding: "10px", fontWeight: "bold" }}>
                   {localStorage.getItem("nickname")}님
                 </div>

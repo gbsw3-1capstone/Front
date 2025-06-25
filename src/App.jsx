@@ -16,7 +16,10 @@ function App() {
   return (
     <BrowserRouter>
       <div className="navbar-layout">
-        <Navbar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+        <Navbar
+          isSidebarOpen={isSidebarOpen}
+          setIsSidebarOpen={setIsSidebarOpen}
+        />
         <div
           className="main-content"
           style={{

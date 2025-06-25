@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { newsList } from "../newsList";
-import NewsCard from "../main/NewsCard"; // 경로 확인!
+import NewsCard from "../main/NewsCard";
 import "./Tag.css";
 
 const Tag = () => {
