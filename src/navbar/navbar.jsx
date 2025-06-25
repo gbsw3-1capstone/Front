@@ -20,6 +20,7 @@ const menuItems = [
     to: "/culture",
     subMenu: [
       { label: "생활/문화", to: "/tag/LifeCulture" },
+      { label: "스포츠", to: "/tag/sports" },
       { label: "연예", to: "/tag/entertainments" },
     ],
   },

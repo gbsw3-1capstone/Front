@@ -82,3 +82,8 @@
   cursor: pointer;
   transform: scale(1.05);
 }
+
+.NewsDetailPage-loading {
+  text-align: center;
+  font-size: 30px;
+}

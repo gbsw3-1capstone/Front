@@ -5,3 +5,7 @@
   padding: 20px;
   box-sizing: border-box;
 }
+
+.tag-page-loading {
+  text-align: center;
+}

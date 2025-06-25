@@ -1,18 +1,57 @@
 import { useParams } from "react-router-dom";
-import { newsList } from "../newsList";
+import axios from "axios";
 import "./NewsDetailPage.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function NewsDetailPage() {
   const { id } = useParams();
-  const news = newsList.find((item) => String(item.id) === id);
+  const [loading, setLoading] = useState(true);
+  const [newsList, setNewsList] = useState([]);
 
   const [liked, setLiked] = useState(false);
   const [bookmarked, setBookmarked] = useState(false);
 
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const res = await axios.get("http://localhost:2007/api/articles");
+        setNewsList(res.data);
+      } catch (err) {
+        console.error("뉴스 불러오기 실패", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchNews();
+  }, []);
+
+  const news = newsList.find((item) => String(item.id) === id);
+
+  if (loading)
+    return <div className="NewsDetailPage-loading">불러오는 중...</div>;
+
   if (!news) {
     return <div>뉴스를 찾을 수 없습니다.</div>;
   }
+
+  const handleLikeClick = async () => {
+    if (liked) return;
+    const token = localStorage.getItem("token");
+    try {
+      await axios.post(
+        `http://localhost:2007/api/articles/${id}/like`,
+        {},
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
+      setLiked(true);
+    } catch (err) {
+      console.log("실패", err);
+    }
+  };
 
   return (
     <div className="news-detail-container">
@@ -37,7 +76,7 @@ function NewsDetailPage() {
       <div className="news-detail-fixed-button">
         <button
           className={`news-detail-button ${liked ? "liked" : ""}`}
-          onClick={() => setLiked(!liked)}
+          onClick={handleLikeClick}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
