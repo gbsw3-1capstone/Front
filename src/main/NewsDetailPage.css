@@ -62,7 +62,7 @@
 .news-detail-fixed-button {
   position: fixed;
   top: 90%;
-  left: 90%;
+  left: 85%;
 }
 
 .news-detail-button {
@@ -86,4 +86,24 @@
 .NewsDetailPage-loading {
   text-align: center;
   font-size: 30px;
+}
+
+.news-detail-button {
+  position: relative;
+}
+
+.news-detail-button:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0.9;
+  pointer-events: none;
 }

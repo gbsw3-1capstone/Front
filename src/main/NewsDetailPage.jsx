@@ -6,37 +6,34 @@ import { useEffect, useState } from "react";
 function NewsDetailPage() {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
-  const [newsList, setNewsList] = useState([]);
-
+  const [news, setNews] = useState(null);
   const [liked, setLiked] = useState(false);
   const [bookmarked, setBookmarked] = useState(false);
 
+  const token = localStorage.getItem("token");
+
+  const fetchNews = async () => {
+    try {
+      const res = await axios.get(`http://localhost:2007/api/articles/${id}`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+      setNews(res.data);
+      setLiked(res.data.liked);
+      setBookmarked(res.data.bookmarked);
+    } catch (err) {
+      console.error("뉴스 불러오기 실패", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        const res = await axios.get("http://localhost:2007/api/articles");
-        setNewsList(res.data);
-      } catch (err) {
-        console.error("뉴스 불러오기 실패", err);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchNews();
-  }, []);
-
-  const news = newsList.find((item) => String(item.id) === id);
-
-  if (loading)
-    return <div className="NewsDetailPage-loading">불러오는 중...</div>;
-
-  if (!news) {
-    return <div>뉴스를 찾을 수 없습니다.</div>;
-  }
+  }, [id]);
 
   const handleLikeClick = async () => {
-    if (liked) return;
-    const token = localStorage.getItem("token");
     try {
       await axios.post(
         `http://localhost:2007/api/articles/${id}/like`,
@@ -47,11 +44,35 @@ function NewsDetailPage() {
           },
         }
       );
-      setLiked(true);
+      fetchNews();
     } catch (err) {
-      console.log("실패", err);
+      console.error("좋아요 토글 실패", err);
+      alert("로그인 이후 이용 가능합니다!");
     }
   };
+
+  const handleBookmarkClick = async () => {
+    try {
+      await axios.post(
+        `http://localhost:2007/api/articles/${id}/bookmark`,
+        {},
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
+      fetchNews();
+    } catch (err) {
+      console.error("북마크 토글 실패", err);
+      alert("로그인 후 이용 가능합니다!");
+    }
+  };
+
+  if (loading)
+    return <div className="NewsDetailPage-loading">불러오는 중...</div>;
+
+  if (!news) return <div>뉴스를 찾을 수 없습니다.</div>;
 
   return (
     <div className="news-detail-container">
@@ -75,8 +96,35 @@ function NewsDetailPage() {
 
       <div className="news-detail-fixed-button">
         <button
+          className="news-detail-button"
+          onClick={() => window.open(news.news_link, "_blank")}
+          title="원본 기사 보기"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="36"
+            height="36"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="black"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path
+              d="M18 13v6a2 2 0 0 1-2 2H6a2 
+             2 0 0 1-2-2V8a2 2 0 0 
+             1 2-2h6"
+            ></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </button>
+
+        <button
           className={`news-detail-button ${liked ? "liked" : ""}`}
           onClick={handleLikeClick}
+          title={liked ? "좋아요 취소" : "좋아요"}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +143,8 @@ function NewsDetailPage() {
 
         <button
           className={`news-detail-button ${bookmarked ? "bookmarked" : ""}`}
-          onClick={() => setBookmarked(!bookmarked)}
+          onClick={handleBookmarkClick}
+          title={bookmarked ? "북마크 해제" : "북마크"}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
