@@ -42,7 +42,7 @@ function Main() {
         {renderSection("최신 뉴스", sortedNews)}
         {renderSection(
           "society",
-          newsList.filter((news) => news.tag === "society")
+          newsList.filter((news) => news.tag === "politics")
         )}
         {renderSection(
           "문화",
