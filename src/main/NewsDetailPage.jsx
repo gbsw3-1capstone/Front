@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./NewsDetailPage.css";
 import { useEffect, useState } from "react";
+import detail_loading from "../photo/loading/Detail_loading.png";
 
 function NewsDetailPage() {
   const { id } = useParams();
@@ -14,11 +15,15 @@ function NewsDetailPage() {
 
   const fetchNews = async () => {
     try {
-      const res = await axios.get(`http://localhost:2007/api/articles/${id}`, {
-        headers: {
-          Authorization: `${token}`,
-        },
-      });
+      const res = await axios.get(
+        `http://13.209.84.48:2007/api/articles/${id}`,
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
+      console.log("조회수 오름");
       setNews(res.data);
       setLiked(res.data.liked);
       setBookmarked(res.data.bookmarked);
@@ -33,10 +38,26 @@ function NewsDetailPage() {
     fetchNews();
   }, [id]);
 
+  // useEffect(() => {
+  //   if (!news) return;
+
+  //   const recentNewsIds = JSON.parse(
+  //     localStorage.getItem("recentNewsIds") || "[]"
+  //   );
+
+  //   if (!recentNewsIds.includes(news.id)) {
+  //     recentNewsIds.unshift(news.id);
+  //     if (recentNewsIds.length > 100) {
+  //       recentNewsIds.pop();
+  //     }
+  //     localStorage.setItem("recentNewsIds", JSON.stringify(recentNewsIds));
+  //   }
+  // }, [news]);
+
   const handleLikeClick = async () => {
     try {
       await axios.post(
-        `http://localhost:2007/api/articles/${id}/like`,
+        `http://13.209.84.48:2007/api/articles/${id}/like`,
         {},
         {
           headers: {
@@ -54,7 +75,7 @@ function NewsDetailPage() {
   const handleBookmarkClick = async () => {
     try {
       await axios.post(
-        `http://localhost:2007/api/articles/${id}/bookmark`,
+        `http://13.209.84.48:2007/api/articles/${id}/bookmark`,
         {},
         {
           headers: {
@@ -70,7 +91,16 @@ function NewsDetailPage() {
   };
 
   if (loading)
-    return <div className="NewsDetailPage-loading">불러오는 중...</div>;
+    return (
+      <div className="NewsDetailPage-loading">
+        <img
+          src={detail_loading}
+          width={500}
+          height={500}
+          alt="detail_loading"
+        ></img>
+      </div>
+    );
 
   if (!news) return <div>뉴스를 찾을 수 없습니다.</div>;
 
@@ -84,13 +114,12 @@ function NewsDetailPage() {
       <div className="news-deatil-header">
         <h1 className="news-detail-title">{news.title}</h1>
         <p className="news-detail-meta">
-          {news.date} | {news.news_source}
+          {news.date} | {news.news_source} | {news.tag2}
         </p>
       </div>
 
-      <div className="summary-box">{news.summary_highlight}</div>
-
       <div className="news-detail-content">
+        <span className="oneline-su">요약</span>
         <p className="news-detail-summary">{news.summary}</p>
       </div>
 

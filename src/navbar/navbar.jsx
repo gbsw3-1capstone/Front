@@ -8,10 +8,10 @@ const menuItems = [
     icon: "📰",
     to: "/sisa",
     subMenu: [
-      { label: "정치", to: "/tag/politics" },
-      { label: "경제", to: "/tag/economy" },
-      { label: "사회", to: "/tag/society" },
-      { label: "세계", to: "/tag/global" },
+      { label: "정치", to: "/tag/Politics" },
+      { label: "경제", to: "/tag/Economy" },
+      { label: "사회", to: "/tag/Society" },
+      { label: "세계", to: "/tag/International" },
     ],
   },
   {
@@ -19,9 +19,8 @@ const menuItems = [
     icon: "🎨",
     to: "/culture",
     subMenu: [
-      { label: "생활/문화", to: "/tag/LifeCulture" },
-      { label: "스포츠", to: "/tag/sports" },
-      { label: "연예", to: "/tag/entertainments" },
+      { label: "생활/문화", to: "/tag/Culture%2FLife" },
+      { label: "연예", to: "/tag/Entertainment" },
     ],
   },
   {
@@ -29,8 +28,8 @@ const menuItems = [
     icon: "💻",
     to: "/it",
     subMenu: [
-      { label: "기술", to: "/tag/technology" },
-      { label: "테크", to: "/tag/tech" },
+      { label: "기술", to: "/tag/Technology" },
+      { label: "테크", to: "/tag/Tech" },
     ],
   },
 ];
@@ -128,6 +127,19 @@ function Navbar({ isSidebarOpen, setIsSidebarOpen }) {
               {isSidebarOpen && <span className="label">홈</span>}
             </div>
           </div>
+          <div className="menu-group">
+            <div
+              className="nav-item parent"
+              onClick={() => {
+                navigate("/INK");
+                if (isSidebarOpen) setIsSidebarOpen(false);
+              }}
+              title={!isSidebarOpen ? "INK" : ""}
+            >
+              <span className="icon">🔥</span>
+              {isSidebarOpen && <span className="label">INK</span>}
+            </div>
+          </div>
           {menuItems.map(({ label, icon, subMenu }) => (
             <div key={label} className="menu-group">
               <div
@@ -163,6 +175,19 @@ function Navbar({ isSidebarOpen, setIsSidebarOpen }) {
               )}
             </div>
           ))}
+          <div className="menu-group">
+            <div
+              className="nav-item parent"
+              onClick={() => {
+                navigate("/tag/Sports");
+                if (isSidebarOpen) setIsSidebarOpen(false);
+              }}
+              title={!isSidebarOpen ? "스포츠" : ""}
+            >
+              <span className="icon">⚽️</span>
+              {isSidebarOpen && <span className="label">스포츠</span>}
+            </div>
+          </div>
         </nav>
 
         <div className="navbar-footer">

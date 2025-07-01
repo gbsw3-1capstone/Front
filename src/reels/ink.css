@@ -1,0 +1,105 @@
+.ink-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+  background-color: white;
+}
+
+.ink-card {
+  height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ink-card > div {
+  width: 90%;
+  max-width: 420px;
+  height: 97%;
+  background-color: #1e1e1e;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+.ink-image {
+  width: 100%;
+  max-height: 50vh;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ink-content {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+}
+
+.ink-content h1 {
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+  color: white;
+}
+
+.ink-content p {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin: 20px 0;
+}
+
+.ink-actions {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.ink-detail-button {
+  background: transparent;
+  border: none;
+  width: 48px;
+  height: 48px;
+  transition: transform 0.2s ease;
+}
+
+.ink-detail-button:hover {
+  transform: scale(1.15);
+  cursor: pointer;
+}
+
+.ink-detail-button svg {
+  width: 36px;
+  height: 36px;
+}
+
+.progress-bar-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: dodgerblue;
+  animation: progressAnimation 10s linear forwards;
+}
+
+@keyframes progressAnimation {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}

@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import Navbar from "./navbar/navbar.jsx";
 import Main from "./main/main.jsx";
+import Ink from "./reels/ink.jsx";
 import Login from "./login/login.jsx";
 import Signup from "./signup/signup.jsx";
 import Search from "./search/search.jsx";
@@ -31,6 +32,7 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="/main" element={<Main />} />
             <Route path="/main/:id" element={<NewsDetailPage />} />
+            <Route path="/ink" element={<Ink />} />
             <Route path="/:id" element={<NewsDetailPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />

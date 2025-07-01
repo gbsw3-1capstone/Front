@@ -7,5 +7,52 @@
 }
 
 .tag-page-loading {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.tag-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.tag-pagination button {
+  border: 1px solid #ccc;
+  background: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.tag-pagination .active-page {
+  background: #333;
+  color: white;
+  border-color: #333;
+}
+
+.sort-dropdown {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+  margin-right: 20px;
+  font-weight: 500;
+}
+
+.sort-dropdown select {
+  padding: 4px 1px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.sort-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+  line-height: 1.5;
 }

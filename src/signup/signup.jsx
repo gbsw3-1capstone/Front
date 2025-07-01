@@ -22,7 +22,7 @@ function Signup() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:2007/api/auth/signup",
+        "http://13.209.84.48:2007/api/auth/signup",
         form,
         {
           headers: {

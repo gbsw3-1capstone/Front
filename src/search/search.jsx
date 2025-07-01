@@ -3,6 +3,8 @@ import axios from "axios";
 import NewsCard from "../main/NewsCard";
 import "./search.css";
 import { useEffect, useState } from "react";
+import search_logo from "../photo/loading/search_loading.png";
+import no_search from "../photo/loading/no_search_logo.png";
 
 function Search() {
   const location = useLocation();
@@ -14,7 +16,7 @@ function Search() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const res = await axios.get("http://localhost:2007/api/articles");
+        const res = await axios.get("http://13.209.84.48:2007/api/articles");
         setNewsList(res.data);
       } catch (err) {
         console.error("뉴스 검색 실패", err);
@@ -27,7 +29,18 @@ function Search() {
   const filteredNews = newsList.filter((news) =>
     news.title.toLocaleLowerCase().includes(query)
   );
-  if (loading) return <div className="serach-loading">검색중입니다.</div>;
+  if (loading)
+    return (
+      <div className="serach-loading">
+        <img
+          className="search-loading-logo"
+          src={search_logo}
+          width={500}
+          height={500}
+          alt="search_logo"
+        ></img>
+      </div>
+    );
 
   return (
     <div className="background">
@@ -43,7 +56,9 @@ function Search() {
             </Link>
           ))
         ) : (
-          <p>검색 결과가 없습니다.</p>
+          <div className="no-search-logo">
+            <img src={no_search} width={500} height={500} alt="No_search"></img>
+          </div>
         )}
       </div>
     </div>

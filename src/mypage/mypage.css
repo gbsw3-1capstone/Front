@@ -1,4 +1,4 @@
-.mypage-container {
+.mypage-loading {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,84 +7,100 @@
   margin: 0 auto;
 }
 
-.mypage-card {
-  width: 100%;
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
-  padding: 20px;
+.mypage-font-line {
+  text-align: center;
   margin-bottom: 30px;
 }
 
+.mypage-container {
+  display: flex;
+  gap: 32px;
+  padding: 40px;
+  background-color: #fff;
+  color: #333;
+  min-height: 100vh;
+}
+
+.mypage-left-panel {
+  width: 280px;
+  background-color: #1e1e2f;
+  color: white;
+  border-radius: 16px;
+  padding: 24px;
+  position: sticky;
+  top: 40px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .mypage-name {
-  font-size: 20px;
+  font-size: 1.6rem;
   font-weight: bold;
   margin-bottom: 4px;
 }
 
 .mypage-username {
-  color: #888;
-  font-size: 14px;
+  font-size: 0.95rem;
+  color: #ccc;
   margin-bottom: 12px;
 }
 
-.mypage-empty {
-  color: #999;
-  font-size: 14px;
-}
-
-.liked-news-list,
-.bookmarked-news-list {
+.mypage-stats {
   display: flex;
-  overflow-x: auto;
-  gap: 10px;
-  padding: 10px 0;
-}
-
-.news-item {
-  flex: 0 0 auto;
-  width: 200px;
-  text-align: center;
-}
-
-.news-item img {
-  width: 100%;
-  border-radius: 8px;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 500;
+  margin-bottom: 20px;
 }
 
 .logout-button {
-  background-color: #ef4444;
+  background-color: #d63031;
   color: white;
   border: none;
-  padding: 8px 16px;
-  font-size: 14px;
-  border-radius: 6px;
+  padding: 10px 20px;
+  border-radius: 8px;
   cursor: pointer;
+  margin-top: auto;
   transition: background-color 0.3s;
 }
 
 .logout-button:hover {
-  background-color: #dc2626;
+  background-color: #c0392b;
 }
 
-.horizontal-scroll {
+.mypage-right-panel {
+  flex: 1;
+}
+
+.mypage-tab-buttons {
   display: flex;
-  overflow-x: auto;
-  gap: 1rem;
-  padding-bottom: 10px;
-  scroll-snap-type: x mandatory;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
-.news-card {
-  flex: 0 0 auto;
-  width: 220px;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  scroll-snap-align: start;
-  background: white;
-  padding: 10px;
-  transition: transform 0.3s ease;
+.mypage-tab-buttons button {
+  background-color: #1e1e2f;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.news-card:hover {
-  transform: translateY(-4px);
+.mypage-tab-buttons button.active {
+  background-color: #3f51b5;
+}
+
+.mypage-news-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.mypage-card-setting {
+  display: none;
 }

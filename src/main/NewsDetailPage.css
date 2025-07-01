@@ -30,6 +30,7 @@
 }
 
 .news-detail-content {
+  position: relative;
   background: white;
   padding: 24px;
   margin-top: 30px;
@@ -106,4 +107,21 @@
   white-space: nowrap;
   opacity: 0.9;
   pointer-events: none;
+}
+
+.oneline-su {
+  position: absolute;
+  top: -5px;
+  left: 12px;
+  padding: 0 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.NewsDetailPage-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
