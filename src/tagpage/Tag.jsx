@@ -37,7 +37,7 @@ const Tag = () => {
           {
             params: {
               sortBy,
-              limit: 100,
+              limit: 1000000,
             },
           }
         );
